@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <table>
-      <tr>
-        {{menor}}
-        {{joven}}
-        {{adulto}}  
+  <div class="holle">
+    <div class="row">
+      <div class="col-md-6">
         <div id="Candlet"></div>
+      </div>
+      <div class="col-md-6">
         <div id="ranking"></div>
+      </div>
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-4">
         <div id="ranking2"></div>
-        
-      </tr>
-      <tbody>
-        <tr v-for="todo in todos" :key="todo.id_de_caso"> 
-          <td v-if="todo.edad<20">    
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
   </div>
 </template>
 
@@ -109,8 +107,9 @@ export default {
         }];
 
         var layout = {
-          height: 400,
-          width: 500
+          title: 'grafica de contagios por edad',
+          height: 600,
+          width: 800
         }
         Plotly.newPlot('Candlet', data, layout);
 
@@ -130,7 +129,7 @@ export default {
         var data = [ trace1 ];
 
         var layout = { 
-          title: 'Ranking de ciudades con mas contagios',
+          title: 'Grafica de contagios por genero',
           font: {size: 18}
         };
 
@@ -143,7 +142,9 @@ export default {
                      y: this.ciudadG, 
                      x: this.canPCG, 
         }];
-        var layout = {margin: {l: 150}, width:600, height: 500}
+        var layout = {
+          title: 'Ranking de ciudades con mas contagios',
+          margin: {l: 150}, width:800, height: 600}
         Plotly.newPlot('ranking2', data, layout);
       })
       .catch( e=> console.log(e))
@@ -152,9 +153,6 @@ export default {
   }
 }
 </script>
-
-
-
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
@@ -171,5 +169,9 @@ li {
 }
 a {
   color: #42b983;
+}
+principalCon {
+    height: 200pt;
+    margin:  10px;
 }
 </style>
