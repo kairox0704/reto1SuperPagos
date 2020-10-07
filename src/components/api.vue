@@ -37,7 +37,9 @@ export default {
       ciudades:[],
       canPCit:[],
       ciudadG:[],
-      canPCG:[]
+      canPCG:[],
+      femenino: 0,
+      masculino: 0
     }
   },
   mounted(){
@@ -80,6 +82,12 @@ export default {
           if(this.todos[todo].edad >= 40){
             this.adulto = this.adulto + 1;
           }
+
+          if(this.todos[todo].sexo === 'M'){
+            this.masculino = this.masculino + 1;
+          }else{
+            this.femenino = this.femenino + 1;
+          }
         }
         for (let mayores = 0; mayores < 4; mayores++) {
           var lex = 0;
@@ -94,8 +102,6 @@ export default {
           this.canPCG.push(this.canPCit[aux]);
           this.canPCit[aux] = 0;
         }
-        console.log(this.ciudades.length);
-        console.log(this.canPCit.length);
         var data = [{
           values: [this.menor, this.joven, this.adulto],
           labels: ['0 - 20', '20 - 40', '40 o mas'],
@@ -110,8 +116,9 @@ export default {
 
         var trace1 = {
           type: 'bar',
-          x: this.ciudadG,
-          y: this.canPCG,
+          x: ['Hombres','Mujeres'],
+          y: [this.masculino,this.femenino],
+          
           marker: {
               color: '#C8A2C8',
               line: {
